@@ -1,0 +1,62 @@
+/* Estilos para el formulario de inicio de sesión */
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-header {
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .card-body {
+    padding: 2rem;
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .input-group-text {
+    background-color: #f8f9fa;
+    border-color: #ced4da;
+  }
+  
+  .text-danger {
+    font-size: 0.875rem;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+  
+
+  /* Estilos para el Snackbar de éxito */
+.snackbar-success {
+  background-color: #4caf50; /* Color de fondo verde */
+  color: #fff; /* Color del texto blanco */
+}
+
+/* Estilos para el Snackbar de error */
+.snackbar-error {
+  background-color: #f44336; /* Color de fondo rojo */
+  color: #fff; /* Color del texto blanco */
+}
+
+/* Estilos para el Snackbar de advertencia */
+.snackbar-warning {
+  background-color: #ff9800; /* Color de fondo naranja */
+  color: #fff; /* Color del texto blanco */
+}
+
+/* Estilos para el Snackbar de información */
+.snackbar-info {
+  background-color: #2196f3; /* Color de fondo azul */
+  color: #fff; /* Color del texto blanco */
+}
