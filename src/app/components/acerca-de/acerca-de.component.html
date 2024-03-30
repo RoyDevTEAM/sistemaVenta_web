@@ -1,1 +1,104 @@
-<p>acerca-de works!</p>
+<!-- Botón para abrir el modal de registro o edición de empresa -->
+<button type="button" class="btn btn-primary" data-toggle="modal" [attr.data-target]="isEditing ? '#registroEmpresaModal' : null" (click)="abrirModal()">
+    {{ isEditing ? 'Editar Empresa' : 'Registrar Empresa' }}
+  </button>
+  
+  <!-- Modal de registro o edición de empresa -->
+  <div class="modal fade" id="registroEmpresaModal" tabindex="-1" role="dialog" aria-labelledby="registroEmpresaModalLabel" aria-hidden="true" [ngClass]="{ 'show': isEditing }">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="registroEmpresaModalLabel">{{ isEditing ? 'Editar Empresa' : 'Registrar Empresa' }}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="cerrarModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Formulario de registro o edición de empresa -->
+          <form (ngSubmit)="guardarEmpresa()" #empresaForm="ngForm">
+            <!-- Campos del formulario -->
+            <div class="form-group row">
+              <label for="nombre" class="col-sm-2 col-form-label">Nombre:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="empresa.nombre" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="descripcion" class="col-sm-2 col-form-label">Descripción:</label>
+              <div class="col-sm-10">
+                <textarea class="form-control" id="descripcion" name="descripcion" [(ngModel)]="empresa.descripcion" required></textarea>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="direccion" class="col-sm-2 col-form-label">Dirección:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="direccion" name="direccion" [(ngModel)]="empresa.direccion">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="telefono" class="col-sm-2 col-form-label">Teléfono:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="telefono" name="telefono" [(ngModel)]="empresa.telefono">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="correoElectronico" class="col-sm-2 col-form-label">Correo Electrónico:</label>
+              <div class="col-sm-10">
+                <input type="email" class="form-control" id="correoElectronico" name="correoElectronico" [(ngModel)]="empresa.correoElectronico">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="sitioWeb" class="col-sm-2 col-form-label">Sitio Web:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="sitioWeb" name="sitioWeb" [(ngModel)]="empresa.sitioWeb">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="sector" class="col-sm-2 col-form-label">Sector:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="sector" name="sector" [(ngModel)]="empresa.sector">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="fechaFundacion" class="col-sm-2 col-form-label">Fecha de Fundación:</label>
+              <div class="col-sm-10">
+                <input type="date" class="form-control" id="fechaFundacion" name="fechaFundacion" [(ngModel)]="empresa.fechaFundacion">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="logo" class="col-sm-2 col-form-label">Logo:</label>
+              <div class="col-sm-10">
+                <input type="file" class="form-control-file" id="logo" name="logo" (change)="onFileSelected($event)" accept="image/*" required>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cerrarModal()">Cerrar</button>
+          <button type="button" class="btn btn-primary" (click)="guardarEmpresa()">{{ isEditing ? 'Actualizar Empresa' : 'Guardar Empresa' }}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+<!-- Lista de empresas registradas -->
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h2 class="text-center">Empresas Registradas</h2>
+      <div class="card-columns">
+        <!-- Tarjeta de empresa -->
+        <div class="card" *ngFor="let empresa of empresas">
+          <img [src]="empresa.logoUrl" class="card-img-top" alt="Logo">
+          <div class="card-body">
+            <h5 class="card-title">{{ empresa.nombre }}</h5>
+            <p class="card-text">{{ empresa.descripcion }}</p>
+            <button class="btn btn-danger mr-2" (click)="eliminarEmpresa(empresa.id_empresa)">Eliminar</button>
+            <button class="btn btn-primary" (click)="editarEmpresa(empresa)">Editar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
